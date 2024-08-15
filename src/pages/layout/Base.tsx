@@ -1,8 +1,12 @@
+import { Outlet } from "react-router-dom";
 
 const Base = () => {
   return (
-    <div>Base</div>
-  )
-}
+    <div>
+      <h1>Base</h1>
+      <Outlet />
+    </div>
+  );
+};
 
-export default Base
+export default Base;
