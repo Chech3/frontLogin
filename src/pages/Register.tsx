@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import InputLabel from "../components/input/InputLabel";
 import Button from "../components/button/Button";
 import * as Yup from "yup";
+import { Api } from "../services/api";
 
 const Register = () => {
   const initialValues = {
@@ -10,8 +11,10 @@ const Register = () => {
     password: "",
     password_confirmation: "",
   };
+
   const onSubmit = (values: typeof initialValues) => {
     console.log(values);
+    Api.post('auth/register', values).then((response) => console.log(response))
   };
 
   const validationSchema = Yup.object({
@@ -30,7 +33,7 @@ const Register = () => {
   return (
     <section className="bg-gray-800 w-screen h-screen">
       <div className="flex h-screen justify-center items-center">
-        <div className="bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className=" bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <h2 className="text-center text-white font-semibold text-xl mb-3">
             Register
           </h2>
@@ -39,12 +42,7 @@ const Register = () => {
             onSubmit={onSubmit}
             initialValues={initialValues}
           >
-            {({
-              values,
-              errors,
-              handleChange,
-              handleSubmit,
-            }) => (
+            {({ values, errors, handleChange, handleSubmit }) => (
               <form onSubmit={handleSubmit}>
                 <InputLabel
                   label="Email"
