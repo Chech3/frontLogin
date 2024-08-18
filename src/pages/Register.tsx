@@ -3,6 +3,7 @@ import InputLabel from "../components/input/InputLabel";
 import Button from "../components/button/Button";
 import * as Yup from "yup";
 import { Api } from "../services/api";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const initialValues = {
@@ -14,7 +15,7 @@ const Register = () => {
 
   const onSubmit = (values: typeof initialValues) => {
     console.log(values);
-    Api.post('auth/register', values).then((response) => console.log(response))
+    Api.post("auth/register", values).then((response) => console.log(response));
   };
 
   const validationSchema = Yup.object({
@@ -88,8 +89,15 @@ const Register = () => {
                   <Button type="submit" value="Register" />
                 </div>
               </form>
+              
             )}
           </Formik>
+          <small className="text-sm font-light text-gray-500 dark:text-gray-400">
+            Do you have a account?{" "}
+            <Link className="font-medium hover:underline dark:text-indigo-500 text-indigo-600" to="/login">
+              login
+            </Link>
+          </small>
         </div>
       </div>
     </section>
